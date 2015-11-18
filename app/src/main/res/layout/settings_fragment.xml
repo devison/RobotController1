@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="false"
+    android:paddingBottom="4dp"
+    android:paddingRight="4dp"
+    tools:context=".MyActivity"
+    tools:showIn="@layout/activity_my">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <info.evison.dan.robotcontroller1.view.FieldCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:heading_text="Navigation">
+
+            <info.evison.dan.robotcontroller1.view.NavigationFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </info.evison.dan.robotcontroller1.view.FieldCardView>
+
+        <info.evison.dan.robotcontroller1.view.FieldCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:heading_text="Balance PID">
+
+            <info.evison.dan.robotcontroller1.view.RangeFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name_text="Proportional Term" />
+
+            <info.evison.dan.robotcontroller1.view.RangeFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name_text="Integral Term" />
+
+            <info.evison.dan.robotcontroller1.view.RangeFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name_text="Derivative Term" />
+
+        </info.evison.dan.robotcontroller1.view.FieldCardView>
+
+        <info.evison.dan.robotcontroller1.view.FieldCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:heading_text="Speed PID">
+
+            <info.evison.dan.robotcontroller1.view.RangeFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name_text="Proportional Term" />
+
+            <info.evison.dan.robotcontroller1.view.RangeFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name_text="Integral Term" />
+
+            <info.evison.dan.robotcontroller1.view.RangeFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name_text="Derivative Term" />
+
+            <info.evison.dan.robotcontroller1.view.BooleanFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name_text="Use lights" />
+
+            <info.evison.dan.robotcontroller1.view.ChoiceFieldView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/direction_choices_array"
+                app:name_text="Direction" />
+
+        </info.evison.dan.robotcontroller1.view.FieldCardView>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="name_text" format="string" />
+    <attr name="heading_text" format="string" />
+
+    <declare-styleable name="CollapsibleView">
+        <attr name="heading_text" />
+    </declare-styleable>
+
+    <declare-styleable name="FieldCardView">
+        <attr name="heading_text" />
+    </declare-styleable>
+
+    <declare-styleable name="BooleanFieldView">
+        <attr name="name_text" />
+    </declare-styleable>
+
+    <declare-styleable name="RangeFieldView">
+        <attr name="name_text" />
+    </declare-styleable>
+
+    <declare-styleable name="ChoiceFieldView">
+        <attr name="name_text" />
+        <attr name="android:entries" />
+    </declare-styleable>
+
+</resources>

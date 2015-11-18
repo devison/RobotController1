@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="direction_choices_array">
+        <item>Move forward</item>
+        <item>Move backwards</item>
+        <item>Stand still</item>
+    </string-array>
+
+</resources>
