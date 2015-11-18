@@ -54,6 +54,7 @@ public class ChoiceFieldView extends LinearLayout implements View.OnClickListene
     void bind(ChoiceFieldModel model) {
         setName(model.name);
         setChoices(model.choices);
+        setSelection(model.selection);
     }
 
     private void setName(String name) {
@@ -65,6 +66,10 @@ public class ChoiceFieldView extends LinearLayout implements View.OnClickListene
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getContext(), R.layout.simple_spinner_item, entries);
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         _spinner.setAdapter(adapter);
+    }
+
+    public void setSelection(int selection) {
+        _spinner.setSelection(selection);
     }
 
     private void init(Context context) {

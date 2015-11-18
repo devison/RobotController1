@@ -41,11 +41,26 @@ public class FieldsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        String[] choices = new String[]{ "Choice 1", "Choice 2", "Choice 3"};
+        String[] choices = new String[]{"Choice 1", "Choice 2", "Choice 3"};
+        String[] choices2 = new String[]{"Choice 4", "Choice 5", "Choice 6", "Choice 7", "Choice 8", "Choice 9", "Choice 10"};
+
         List<FieldGroupModel> models = Arrays.asList(
-                new FieldGroupModel("First Group", Arrays.<FieldModel>asList(new BooleanFieldModel("My Boolean", false))),
-                new FieldGroupModel("Second Group", Arrays.<FieldModel>asList(new RangeFieldModel("My Range", 5, 100))),
-                new FieldGroupModel("Third Group", Arrays.<FieldModel>asList(new ChoiceFieldModel("My Choice", 0, choices)))
+                new FieldGroupModel("First Group", Arrays.<FieldModel>asList(
+                        new BooleanFieldModel("My Boolean 1", false),
+                        new BooleanFieldModel("My Boolean 2", true)
+                )),
+                new FieldGroupModel("Second Group", Arrays.<FieldModel>asList(
+                        new RangeFieldModel("My Range 1", 5, 100),
+                        new RangeFieldModel("My Range 2", 50, 100),
+                        new RangeFieldModel("My Range 3", 100, 100),
+                        new RangeFieldModel("My Range 4", 100, 1000),
+                        new BooleanFieldModel("My Boolean 2", true)
+                )),
+                new FieldGroupModel("Third Group", Arrays.<FieldModel>asList(
+                        new ChoiceFieldModel("My Choice 1", 0, choices),
+                        new ChoiceFieldModel("My Choice 2", 1, choices),
+                        new ChoiceFieldModel("My Choice 3", 2, choices),
+                        new ChoiceFieldModel("My Choice 4", 0, choices2)))
         );
 
         FieldCardRecyclerViewAdapter adapter = new FieldCardRecyclerViewAdapter(models);

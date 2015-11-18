@@ -47,8 +47,13 @@ public class BooleanFieldView extends LinearLayout {
         _switch.setText(name == null ? "" : name);
     }
 
+    public void setValue(boolean value) {
+        _switch.setChecked(value);
+    }
+
     public void bind(BooleanFieldModel model) {
         setName(model.name);
+        setValue(model.value);
     }
 
     private void init(Context context) {
