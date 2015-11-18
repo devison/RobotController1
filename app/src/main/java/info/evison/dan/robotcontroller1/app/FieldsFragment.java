@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,10 @@ public class FieldsFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fields_recycler_view);
         recyclerView.setHasFixedSize(false);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+//        recyclerView.setLayoutManager(layoutManager);
+
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         String[] choices = new String[]{"Choice 1", "Choice 2", "Choice 3"};
@@ -63,7 +67,12 @@ public class FieldsFragment extends Fragment {
                         new ChoiceFieldModel("My Choice 4", 0, choices2)))
         );
 
-        FieldCardRecyclerViewAdapter adapter = new FieldCardRecyclerViewAdapter(models);
+        List<FieldGroupModel> models2 = new ArrayList<>();
+        models2.addAll(models);
+        models2.addAll(models);
+        models2.addAll(models);
+        models2.addAll(models);
+        FieldCardRecyclerViewAdapter adapter = new FieldCardRecyclerViewAdapter(models2);
         recyclerView.setAdapter(adapter);
 
         super.onCreate(savedInstanceState);
