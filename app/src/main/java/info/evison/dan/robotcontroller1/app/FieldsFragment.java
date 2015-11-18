@@ -23,11 +23,15 @@ import info.evison.dan.robotcontroller1.model.ChoiceFieldModel;
 import info.evison.dan.robotcontroller1.model.FieldGroupModel;
 import info.evison.dan.robotcontroller1.model.FieldModel;
 import info.evison.dan.robotcontroller1.model.RangeFieldModel;
+import info.evison.dan.robotcontroller1.util.LayoutUtil;
 import info.evison.dan.robotcontroller1.view.FieldCardRecyclerViewAdapter;
+import info.evison.dan.robotcontroller1.view.MarginItemDecoration;
 
 public class FieldsFragment extends Fragment {
 
     private static final String TAG = FieldsFragment.class.getSimpleName();
+
+    public static final int MARGIN_DP = 5;
 
     public FieldsFragment() {
     }
@@ -35,14 +39,19 @@ public class FieldsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+
         View view = inflater.inflate(R.layout.fields_fragment, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fields_recycler_view);
         recyclerView.setHasFixedSize(false);
+        final int marginPx = LayoutUtil.convertDpToPixel(10, view.getContext());
+        recyclerView.addItemDecoration(new MarginItemDecoration(marginPx));
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
 //        recyclerView.setLayoutManager(layoutManager);
 
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+
+                StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         recyclerView.setLayoutManager(layoutManager);
 
         String[] choices = new String[]{"Choice 1", "Choice 2", "Choice 3"};
