@@ -5,8 +5,8 @@
     card_view:cardCornerRadius="4dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardElevation="4dp"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardElevation="0dp"
+    card_view:cardUseCompatPadding="false">
 
     <info.evison.dan.robotcontroller1.view.CollapsibleView
         android:id="@+id/field_card_view_collapsible_view"

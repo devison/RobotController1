@@ -2,7 +2,9 @@ package info.evison.dan.robotcontroller1.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.databinding.DataBindingUtil;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -10,34 +12,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import info.evison.dan.robotcontroller1.R;
+import info.evison.dan.robotcontroller1.databinding.ChoiceFieldViewBinding;
 import info.evison.dan.robotcontroller1.model.ChoiceFieldModel;
 
 public class ChoiceFieldView extends LinearLayout implements View.OnClickListener {
 
     private static final String TAG = ChoiceFieldView.class.getSimpleName();
 
-    protected TextView _nameView;
-    protected Spinner _spinner;
+    protected ChoiceFieldViewBinding _binding;
 
     public ChoiceFieldView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
-
-        TypedArray a = context.getTheme().obtainStyledAttributes(
-                attrs,
-                R.styleable.ChoiceFieldView,
-                0, 0);
-
-        try {
-            String name = a.getString(R.styleable.ChoiceFieldView_name_text);
-            setName(name);
-
-            CharSequence[] entries = a.getTextArray(R.styleable.ChoiceFieldView_android_entries);
-            setChoices(entries);
-
-        } finally {
-            a.recycle();
-        }
     }
 
     public ChoiceFieldView(Context context) {
@@ -51,37 +37,39 @@ public class ChoiceFieldView extends LinearLayout implements View.OnClickListene
         bind(model);
     }
 
-    void bind(ChoiceFieldModel model) {
-        setName(model.name);
-        setChoices(model.choices);
-        setSelection(model.selection);
-    }
-
-    private void setName(String name) {
-        _nameView.setText(name == null ? "" : name);
-    }
-
-    public void setChoices(CharSequence[] entries) {
-        if (entries == null) entries = new CharSequence[0];
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getContext(), R.layout.simple_spinner_item, entries);
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-        _spinner.setAdapter(adapter);
-    }
-
-    public void setSelection(int selection) {
-        _spinner.setSelection(selection);
-    }
+//    private void setName(String name) {
+//        _nameView.setText(name == null ? "" : name);
+//    }
+//
+//    public void setChoices(CharSequence[] entries) {
+//        if (entries == null) entries = new CharSequence[0];
+//        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getContext(), R.layout.simple_spinner_item, entries);
+//        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+//        _spinner.setAdapter(adapter);
+//    }
+//
+//    public void setSelection(int selection) {
+//        _spinner.setSelection(selection);
+//    }
 
     private void init(Context context) {
-        inflate(context, R.layout.choice_field_view, this);
-        _nameView = (TextView) findViewById(R.id.choice_selector_name);
-        _spinner = (Spinner) findViewById(R.id.choice_selector_spinner);
-        LinearLayout layout = (LinearLayout) findViewById(R.id.choice_selector_layout);
-        layout.setOnClickListener(this);
+        _binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.choice_field_view, this, true);
+        _binding.topLayout.setOnClickListener(this);
+    }
+
+    void bind(ChoiceFieldModel model) {
+        _binding.setModel(model);
+
+        // Note: the choices are not dynamic - they won't change from the view or the model
+        CharSequence[] choices = model.choices;
+        if (choices == null) choices = new CharSequence[0];
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(getContext(), R.layout.simple_spinner_item, choices);
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        _binding.spinner.setAdapter(adapter);
     }
 
     @Override
     public void onClick(View v) {
-        _spinner.performClick();
+        _binding.spinner.performClick();
     }
 }

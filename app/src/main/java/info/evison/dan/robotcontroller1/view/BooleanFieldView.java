@@ -2,34 +2,29 @@ package info.evison.dan.robotcontroller1.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
+import android.databinding.ObservableBoolean;
+import android.databinding.ViewDataBinding;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import info.evison.dan.robotcontroller1.R;
+import info.evison.dan.robotcontroller1.databinding.BooleanFieldViewBinding;
 import info.evison.dan.robotcontroller1.model.BooleanFieldModel;
 
 public class BooleanFieldView extends LinearLayout {
 
     private static final String TAG = BooleanFieldView.class.getSimpleName();
 
-    protected Switch _switch;
+    protected BooleanFieldViewBinding _binding;
 
     public BooleanFieldView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         init(context);
-
-        TypedArray a = context.getTheme().obtainStyledAttributes(
-                attrs,
-                R.styleable.BooleanFieldView,
-                0, 0);
-
-        try {
-            setName(a.getString(R.styleable.BooleanFieldView_name_text));
-        } finally {
-            a.recycle();
-        }
     }
 
     public BooleanFieldView(Context context) {
@@ -43,21 +38,11 @@ public class BooleanFieldView extends LinearLayout {
         bind(model);
     }
 
-    public void setName(String name) {
-        _switch.setText(name == null ? "" : name);
-    }
-
-    public void setValue(boolean value) {
-        _switch.setChecked(value);
+    private void init(Context context) {
+        _binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.boolean_field_view, this, true);
     }
 
     public void bind(BooleanFieldModel model) {
-        setName(model.name);
-        setValue(model.value);
-    }
-
-    private void init(Context context) {
-        inflate(context, R.layout.boolean_field_view, this);
-        _switch = (Switch) findViewById(R.id.boolean_selector_switch);
+        _binding.setModel(model);
     }
 }

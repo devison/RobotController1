@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.concurrent.ThreadLocalRandom;
 
 import info.evison.dan.robotcontroller1.R;
 import info.evison.dan.robotcontroller1.model.BooleanFieldModel;
@@ -33,6 +34,9 @@ public class FieldsFragment extends Fragment {
 
     public static final int MARGIN_DP = 5;
 
+    BooleanFieldModel _booleanFieldModel;
+    ChoiceFieldModel _choiceFieldModel1;
+
     public FieldsFragment() {
     }
 
@@ -44,22 +48,24 @@ public class FieldsFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fields_recycler_view);
         recyclerView.setHasFixedSize(false);
-        final int marginPx = LayoutUtil.convertDpToPixel(10, view.getContext());
+        final int marginPx = LayoutUtil.convertDpToPixel(MARGIN_DP, view.getContext());
         recyclerView.addItemDecoration(new MarginItemDecoration(marginPx));
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
 //        recyclerView.setLayoutManager(layoutManager);
 
-
-                StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         recyclerView.setLayoutManager(layoutManager);
 
         String[] choices = new String[]{"Choice 1", "Choice 2", "Choice 3"};
         String[] choices2 = new String[]{"Choice 4", "Choice 5", "Choice 6", "Choice 7", "Choice 8", "Choice 9", "Choice 10"};
 
+        _booleanFieldModel = new BooleanFieldModel("My Boolean 1", false);
+        _choiceFieldModel1 = new ChoiceFieldModel("My Choice 1", 0, choices);
+
         List<FieldGroupModel> models = Arrays.asList(
                 new FieldGroupModel("First Group", Arrays.<FieldModel>asList(
-                        new BooleanFieldModel("My Boolean 1", false),
+                        _booleanFieldModel,
                         new BooleanFieldModel("My Boolean 2", true)
                 )),
                 new FieldGroupModel("Second Group", Arrays.<FieldModel>asList(
@@ -70,7 +76,7 @@ public class FieldsFragment extends Fragment {
                         new BooleanFieldModel("My Boolean 2", true)
                 )),
                 new FieldGroupModel("Third Group", Arrays.<FieldModel>asList(
-                        new ChoiceFieldModel("My Choice 1", 0, choices),
+                        _choiceFieldModel1,
                         new ChoiceFieldModel("My Choice 2", 1, choices),
                         new ChoiceFieldModel("My Choice 3", 2, choices),
                         new ChoiceFieldModel("My Choice 4", 0, choices2)))
@@ -85,6 +91,7 @@ public class FieldsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         super.onCreate(savedInstanceState);
+        runThread();
         return view;
     }
 
@@ -94,5 +101,35 @@ public class FieldsFragment extends Fragment {
 
     public void onPause() {
         super.onPause();
+    }
+
+    private void runThread() {
+        new Thread() {
+
+            public void run() {
+
+                Runnable toggle = new Runnable() {
+                    @Override
+                    public void run() {
+                        boolean newValue = !_booleanFieldModel.value.get();
+                        _booleanFieldModel.value.set(newValue);
+                        _booleanFieldModel.name.set(newValue ? "Heading - true" : "Heading - false");
+
+                        int newSelection = (_choiceFieldModel1.selection.get() + 1) % _choiceFieldModel1.choices.length;
+                        _choiceFieldModel1.selection.set(newSelection);
+                    }
+                };
+
+                try {
+                    while (true) {
+                        int i = ThreadLocalRandom.current().nextInt(2, 6);
+                        sleep(i * 1000);
+                        getActivity().runOnUiThread(toggle);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 }
