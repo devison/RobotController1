@@ -8,9 +8,9 @@
         <attr name="heading_text" />
     </declare-styleable>
 
-    <declare-styleable name="FieldCardView">
-        <attr name="heading_text" />
-    </declare-styleable>
+    <!--<declare-styleable name="FieldGroupView">-->
+        <!--<attr name="heading_text" />-->
+    <!--</declare-styleable>-->
 
     <declare-styleable name="BooleanFieldView">
         <attr name="name_text" />

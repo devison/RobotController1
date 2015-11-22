@@ -1,16 +1,10 @@
 package info.evison.dan.robotcontroller1.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
-import android.databinding.ObservableBoolean;
-import android.databinding.ViewDataBinding;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 
 import info.evison.dan.robotcontroller1.R;
 import info.evison.dan.robotcontroller1.databinding.BooleanFieldViewBinding;

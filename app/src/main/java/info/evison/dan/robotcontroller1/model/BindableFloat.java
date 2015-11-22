@@ -2,18 +2,18 @@ package info.evison.dan.robotcontroller1.model;
 
 import android.databinding.BaseObservable;
 
-public class BindableInt extends BaseObservable {
-    int value;
+public class BindableFloat extends BaseObservable {
+    float value;
 
-    public BindableInt(int value) {
+    public BindableFloat(float value) {
         this.value = value;
     }
 
-    public int get() {
+    public float get() {
         return value;
     }
 
-    public void set(int value) {
+    public void set(float value) {
         if (this.value != value) {
             this.value = value;
             notifyChange();

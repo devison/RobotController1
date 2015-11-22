@@ -47,6 +47,10 @@ public class CollapsibleView extends FrameLayout {
         }
     }
 
+    public String getHeadingText() {
+        return _headingTextView.getText().toString();
+    }
+
     public void setHeadingText(final String headingText) {
         _headingTextView.setText(headingText == null ? "" : headingText);
     }

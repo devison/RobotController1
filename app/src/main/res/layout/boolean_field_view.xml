@@ -3,29 +3,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="model"
             type="info.evison.dan.robotcontroller1.model.BooleanFieldModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="10dp">
+        android:layout_height="wrap_content">
 
-        <Switch
-           android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{model.name}"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="14sp"
-            app:binding="@{model.value}"
-            />
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp">
 
-    </LinearLayout>
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{model.name}"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="14sp"
+                app:binding="@{model.value}" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:alpha="0"
+            android:background="#00B0FF" />
+
+        <FrameLayout
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:alpha="0"
+            android:background="#00B0FF" />
+
+    </FrameLayout>
 
 </layout>

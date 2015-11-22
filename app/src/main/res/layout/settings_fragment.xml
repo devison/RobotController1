@@ -18,7 +18,7 @@
         android:clipToPadding="false"
         android:orientation="vertical">
 
-        <info.evison.dan.robotcontroller1.view.FieldCardView
+        <info.evison.dan.robotcontroller1.view.FieldGroupView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -28,9 +28,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        </info.evison.dan.robotcontroller1.view.FieldCardView>
+        </info.evison.dan.robotcontroller1.view.FieldGroupView>
 
-        <info.evison.dan.robotcontroller1.view.FieldCardView
+        <info.evison.dan.robotcontroller1.view.FieldGroupView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -51,9 +51,9 @@
                 android:layout_height="wrap_content"
                 app:name_text="Derivative Term" />
 
-        </info.evison.dan.robotcontroller1.view.FieldCardView>
+        </info.evison.dan.robotcontroller1.view.FieldGroupView>
 
-        <info.evison.dan.robotcontroller1.view.FieldCardView
+        <info.evison.dan.robotcontroller1.view.FieldGroupView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:heading_text="Speed PID">
@@ -84,7 +84,7 @@
                 android:entries="@array/direction_choices_array"
                 app:name_text="Direction" />
 
-        </info.evison.dan.robotcontroller1.view.FieldCardView>
+        </info.evison.dan.robotcontroller1.view.FieldGroupView>
 
     </LinearLayout>
 

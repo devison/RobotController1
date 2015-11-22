@@ -1,15 +1,12 @@
 package info.evison.dan.robotcontroller1.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import info.evison.dan.robotcontroller1.R;
 import info.evison.dan.robotcontroller1.databinding.ChoiceFieldViewBinding;
@@ -36,21 +33,6 @@ public class ChoiceFieldView extends LinearLayout implements View.OnClickListene
         init(context);
         bind(model);
     }
-
-//    private void setName(String name) {
-//        _nameView.setText(name == null ? "" : name);
-//    }
-//
-//    public void setChoices(CharSequence[] entries) {
-//        if (entries == null) entries = new CharSequence[0];
-//        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getContext(), R.layout.simple_spinner_item, entries);
-//        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-//        _spinner.setAdapter(adapter);
-//    }
-//
-//    public void setSelection(int selection) {
-//        _spinner.setSelection(selection);
-//    }
 
     private void init(Context context) {
         _binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.choice_field_view, this, true);

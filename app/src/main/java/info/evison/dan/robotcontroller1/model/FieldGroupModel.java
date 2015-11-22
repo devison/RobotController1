@@ -5,16 +5,12 @@ import java.util.List;
 
 public class FieldGroupModel {
 
-    protected String _groupName;
-    protected List<FieldModel> _fieldModels;
+    public BindableString groupName;
+    public List<FieldModel> _fieldModels;
 
     public FieldGroupModel(String groupName, List<FieldModel> fieldModels) {
-        _groupName = groupName;
+        this.groupName = new BindableString(groupName);
         _fieldModels = fieldModels;
-    }
-
-    public String getGroupName() {
-        return _groupName;
     }
 
     public List<FieldModel> getFieldModels() {
