@@ -46,7 +46,7 @@ public class RangeFieldView extends LinearLayout {
     private void init(Context context) {
         _binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.range_field_view, this, true);
         _fadeAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.fade_alpha_slowly2);
-        _fadeAnimator.setTarget(_binding.rightBand);
+        _fadeAnimator.setTarget(_binding.rightIndicator);
     }
 
     public void bind(RangeFieldModel model) {
